@@ -7,7 +7,6 @@ import LoginIcon from "../../../../public/svg/login.svg";
 import styles from "./Navbar.module.scss";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useState } from "react";
 import { Dropdown } from "../../Dropdown/Dropdown";
 import { constants } from "../../../utils/constants";
 

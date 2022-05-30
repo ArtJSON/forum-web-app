@@ -2,14 +2,20 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
+import { prisma } from "../../server/db/client";
 
 const restricted = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getServerAuthSession({ req, res });
 
+  const userData = await prisma.user.findUnique({
+    where: {
+      id: session?.user?.id,
+    },
+  });
+
   if (session) {
     res.send({
-      content:
-        "This is protected content. You can access this content because you are signed in.",
+      content: userData,
     });
   } else {
     res.send({

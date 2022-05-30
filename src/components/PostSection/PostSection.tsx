@@ -1,38 +1,26 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import Link from "next/link";
 
-import { PostListingType } from '../../types/ListingTypes';
-import { constants } from '../../utils/constants';
-import { Tag } from '../Tag/Tag';
-import styles from './PostSection.module.scss';
+import { PostListingType } from "../../types/ListingTypes";
+import { constants } from "../../utils/constants";
+import { Tag } from "../Tag/Tag";
+import styles from "./PostSection.module.scss";
 
 interface PostSectionProps {
   title?: string;
   posts: PostListingType[];
 }
 
-export const PostSection = ({ title = 'Posts', posts }: PostSectionProps) => {
+export const PostSection = ({ title = "Posts", posts }: PostSectionProps) => {
   return (
     <div className={styles.postSection}>
       <div className={styles.header}>
         <div className={styles.posts}>{title}</div>
       </div>
       {posts.map(
-        ({
-          userImgUrl = constants.svg.NO_IMG_URL,
-          id,
-          title,
-          tags,
-          lastResponse,
-          likes,
-          responses,
-          views,
-        }) => (
+        ({ id, title, tags, lastResponse, likes, responses, views }) => (
           <Link key={id} href={`/post/${id}`}>
             <div className={styles.post}>
-              <div className={styles.imageContainer}>
-                <Image layout="fill" src={userImgUrl} />
-              </div>
               <div className={styles.info}>
                 <div className={styles.details}>
                   <p className={styles.postTitle}>{title}</p>
