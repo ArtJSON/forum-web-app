@@ -1,0 +1,10 @@
+@import 'styles/variables';
+
+.pageContainer {
+  min-height: calc(100vh - $footer-height-mobile);
+  background-color: red;
+
+  @media screen and (min-width: $breakpoint-tablet) {
+    min-height: calc(100vh - $footer-height-desktop);
+  }
+}
