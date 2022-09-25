@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 import styles from './Footer.module.scss';
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <ul>
-        <li>
+      <ul className={styles.links}>
+        <li className={styles.link}>
           <Link href={'/about-us'}>About us</Link>
         </li>
         <li>
@@ -22,5 +22,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

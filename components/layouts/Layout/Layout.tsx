@@ -1,5 +1,5 @@
-import Footer from '../Footer/Footer';
-import Navbar from '../Navbar/Navbar';
+import { Footer } from '../Footer/Footer';
+import { Navbar } from '../Navbar/Navbar';
 import styles from './Layout.module.scss';
 
 interface Props {

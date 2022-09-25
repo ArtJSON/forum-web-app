@@ -1,14 +1,19 @@
+@import 'styles/variables';
+
 .nav {
   &.transparent {
     background-color: transparent;
   }
+
+  transition: background-color $transition-default;
+  z-index: 100;
 
   position: fixed;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: red;
+  background-color: $color-secondary;
   padding: 0.5rem;
 
   .logo {

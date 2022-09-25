@@ -7,7 +7,7 @@ import LogoIcon from '../../../public/svg/comment.svg';
 import MenuIcon from '../../../public/svg/menu.svg';
 import styles from './Navbar.module.scss';
 
-const Navbar = () => {
+export const Navbar = () => {
   const [isExtended, setIsExtended] = useState(false);
   const scrollPosition = useScrollPosition();
 
@@ -39,5 +39,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;
