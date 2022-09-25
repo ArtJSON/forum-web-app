@@ -2,10 +2,15 @@
 
 .footer {
   height: $footer-height-mobile;
+  background-color: rebeccapurple;
 
   @media screen and (min-width: $breakpoint-tablet) {
     height: $footer-height-desktop;
   }
 
-  background-color: rebeccapurple;
+  .copyright {
+    .createdBy {
+      color: $color-primary;
+    }
+  }
 }
