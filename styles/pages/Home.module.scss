@@ -10,6 +10,10 @@
   padding: 0 1rem;
   transition: filter $transition-default;
 
+  @media screen and (min-width: $breakpoint-tablet) {
+    height: 30vh;
+  }
+
   &:has(input:focus) {
     filter: brightness(80%);
   }
@@ -24,6 +28,10 @@
     outline: none;
     transition: box-shadow $transition-default;
     background-color: $color-secondary;
+
+    @media screen and (min-width: $breakpoint-tablet) {
+      max-width: 35rem;
+    }
 
     &:focus {
       -moz-box-shadow: 0px 0px 24px 0px rgba(255, 255, 255, 0.2);
