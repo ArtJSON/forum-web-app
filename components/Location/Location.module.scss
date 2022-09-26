@@ -1,0 +1,18 @@
+.locationContainer {
+  height: 6rem;
+  background-color: #20243e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .location {
+    &:not(:last-child)::after {
+      content: '\203A';
+      margin: 0 0.5rem;
+    }
+
+    &:last-child {
+      font-weight: bold;
+    }
+  }
+}

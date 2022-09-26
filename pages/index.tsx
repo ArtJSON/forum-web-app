@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
+import { Location } from '../components/Location/Location';
 import styles from '../styles/pages/Home.module.scss';
 
 const Home: NextPage = () => {
@@ -20,6 +21,12 @@ const Home: NextPage = () => {
           placeholder="Search for topics..."
         />
       </section>
+      <Location
+        paths={[
+          { label: 'Category', url: '/category' },
+          { label: 'Post', url: '/category/post' },
+        ]}
+      />
     </>
   );
 };
