@@ -11,7 +11,7 @@ interface LocationProps {
 
 export const Location = ({ paths }: LocationProps) => {
   return (
-    <div className={styles.locationContainer}>
+    <div className={styles.locationsContainer}>
       <Link href="/">
         <a className={styles.location}>
           <span>Forum</span>

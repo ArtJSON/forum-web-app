@@ -1,8 +1,62 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
+import { CategoriesSection } from '../components/CategorySection/CategorySection';
 import { Location } from '../components/Location/Location';
 import styles from '../styles/pages/Home.module.scss';
+
+const mockedCategories = [
+  {
+    imgUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
+    categoryId: 'dsads',
+    categoryName: 'dsadasdsadasdasdasd',
+    categoryDescription:
+      'dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad as dasd a',
+    posts: 3,
+    lastPost: 'yesterday',
+  },
+  {
+    imgUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
+    categoryId: 'test2',
+    categoryName: 'test ',
+    categoryDescription:
+      'Lorem Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad ad',
+    posts: 13,
+    lastPost: '1 year ago',
+  },
+  {
+    imgUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
+    categoryId: 'test2',
+    categoryName: 'test ',
+    categoryDescription:
+      'Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem ',
+    posts: 34,
+    lastPost: '3 days ago',
+  },
+  {
+    imgUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
+    categoryId: 'test3',
+    categoryName: 'test3 ',
+    categoryDescription:
+      'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad ad',
+    posts: 34,
+    lastPost: 'About a week ago',
+  },
+  {
+    imgUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
+    categoryId: 'test42',
+    categoryName: 'test6 ',
+    categoryDescription:
+      'Lorem Lorem Lorem Lorem da sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad ad',
+    posts: 34,
+    lastPost: '9 days ago',
+  },
+];
 
 const Home: NextPage = () => {
   return (
@@ -27,6 +81,7 @@ const Home: NextPage = () => {
           { label: 'Post', url: '/category/post' },
         ]}
       />
+      <CategoriesSection categories={mockedCategories} />
     </>
   );
 };

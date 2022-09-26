@@ -1,11 +1,17 @@
-.locationContainer {
-  height: 6rem;
+.locationsContainer {
+  min-height: 6rem;
   background-color: #20243e;
+  min-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
+  row-gap: 1rem;
+  flex-wrap: wrap;
 
   .location {
+    display: inline;
+
     &:not(:last-child)::after {
       content: '\203A';
       margin: 0 0.5rem;
