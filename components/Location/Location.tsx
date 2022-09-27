@@ -3,13 +3,23 @@ import Link from 'next/link';
 import styles from './Location.module.scss';
 
 interface LocationProps {
-  paths: {
+  paths?: {
     label: string;
     url: string;
   }[];
 }
 
 export const Location = ({ paths }: LocationProps) => {
+  if (paths == null) {
+    return (
+      <div className={styles.locationsContainer}>
+        <span className={styles.location}>
+          <span>Forum</span>
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.locationsContainer}>
       <Link href="/">
@@ -17,13 +27,19 @@ export const Location = ({ paths }: LocationProps) => {
           <span>Forum</span>
         </a>
       </Link>
-      {paths.map(({ label, url }) => (
-        <Link href={url} key={label + url}>
-          <a className={styles.location}>
+      {paths?.map(({ label, url }, idx) =>
+        idx !== paths.length - 1 ? (
+          <Link href={url} key={label + url}>
+            <a className={styles.location}>
+              <span>{label}</span>
+            </a>
+          </Link>
+        ) : (
+          <span className={styles.location}>
             <span>{label}</span>
-          </a>
-        </Link>
-      ))}
+          </span>
+        )
+      )}
     </div>
   );
 };

@@ -5,6 +5,10 @@
     background-color: transparent;
   }
 
+  &:not(.transparent) {
+    box-shadow: $box-shadow-1;
+  }
+
   transition: background-color $transition-default;
   z-index: 100;
 

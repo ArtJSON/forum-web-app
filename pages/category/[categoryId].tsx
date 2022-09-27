@@ -27,12 +27,7 @@ const Category: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SearchBanner />
-      <Location
-        paths={[
-          { label: 'Category', url: '/category' },
-          { label: 'Post', url: '/category/post' },
-        ]}
-      />
+      <Location paths={[{ label: 'Category', url: '/category' }]} />
       <div className={styles.maxWidthContainer}>
         <PostSection posts={mockedPosts} />
       </div>

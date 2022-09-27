@@ -91,12 +91,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SearchBanner />
-      <Location
-        paths={[
-          { label: 'Category', url: '/category' },
-          { label: 'Post', url: '/category/post' },
-        ]}
-      />
+      <Location />
       <div className={styles.maxWidthContainer}>
         <CategorySection
           title="Most popular categories"
