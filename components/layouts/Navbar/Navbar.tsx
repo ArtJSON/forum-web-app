@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { useScrollPosition } from '../../../hooks/useScrollPosition';
-import LogoIcon from '../../../public/svg/comment.svg';
+import LogoIcon from '../../../public/svg/icon.svg';
 import MenuIcon from '../../../public/svg/menu.svg';
 import styles from './Navbar.module.scss';
 
@@ -28,7 +28,7 @@ export const Navbar = () => {
       <Link href="/">
         <a className={styles.logo}>
           <Image src={LogoIcon} className={styles.icon} />
-          <span>Forum</span>
+          <span>FlashForum</span>
         </a>
       </Link>
       <div className={styles.menu}>
