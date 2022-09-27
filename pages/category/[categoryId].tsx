@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { Location } from '../../components/Location/Location';
 import { PostSection } from '../../components/PostSection/PostSection';
 import { SearchBanner } from '../../components/SearchBanner/SearchBanner';
+import styles from '../../styles/Page.module.scss';
 
 const mockedPosts = [
   {
@@ -32,7 +33,9 @@ const Category: NextPage = () => {
           { label: 'Post', url: '/category/post' },
         ]}
       />
-      <PostSection posts={mockedPosts} />
+      <div className={styles.maxWidthContainer}>
+        <PostSection posts={mockedPosts} />
+      </div>
     </>
   );
 };

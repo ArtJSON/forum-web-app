@@ -7,11 +7,15 @@ $breakpoint-mobile: 576px;
 $breakpoint-tablet: 1024px;
 $breakpoint-desktop: 1920px;
 
-$color-primary: rgb(75, 165, 255);
-$color-secondary: rgb(59, 59, 59);
+$color-primary: #4ba5ff;
+$color-secondary: #3b3b3b;
 $color-text: white;
-$color-background: rgb(20, 20, 20);
+$color-text-gray: #afafaf;
+$color-background: #141414;
+$color-header: #272346;
 
 $transition-default: 0.2s ease-in-out;
 
 $container-max-width: 1600px;
+
+$border-thin: 1px solid #3a3a3a;

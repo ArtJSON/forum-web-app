@@ -23,9 +23,9 @@ export const CategorySection = ({
   return (
     <div className={styles.categorySection}>
       <div className={styles.header}>
-        <div className={styles.categories}>{title}</div>
-        <div className={styles.posts}>Posts</div>
-        <div className={styles.lastPost}>Last Post</div>
+        <p className={styles.categoriesHeader}>{title}</p>
+        <p className={styles.postsHeader}>Posts</p>
+        <p className={styles.lastPostHeader}>Last Post</p>
       </div>
       {categories.map(
         ({
@@ -49,8 +49,8 @@ export const CategorySection = ({
                   </p>
                 </div>
               </div>
-              <p>{posts}</p>
-              <p>{lastPost}</p>
+              <p className={styles.posts}>{posts}</p>
+              <p className={styles.lastPost}>{lastPost}</p>
             </div>
           </Link>
         )

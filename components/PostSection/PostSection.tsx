@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { CONSTANTS } from '../../utils/constants';
+import { Tag } from '../Tag/Tag';
 import styles from './PostSection.module.scss';
 
 interface PostSectionProps {
@@ -41,14 +42,22 @@ export const PostSection = ({ title = 'Posts', posts }: PostSectionProps) => {
                 <Image layout="fill" src={userImgUrl} />
               </div>
               <div className={styles.info}>
-                <div className={styles.info}>
-                  <p className={styles.postTitle}></p>
-                  <div className={styles.details}>
-                    <div className={styles.tags}></div>
+                <div className={styles.details}>
+                  <p className={styles.postTitle}>{title}</p>
+                  <div className={styles.otherInfo}>
+                    <div className={styles.tags}>
+                      {tags?.map((tag) => (
+                        <Tag key={tag} tag={tag} />
+                      ))}
+                    </div>
                     <p className={styles.lastResponse}>{lastResponse}</p>
                   </div>
                 </div>
-                <div className={styles.social}></div>
+                <div className={styles.social}>
+                  <p className={styles.likes}>{likes}</p>
+                  <p className={styles.responses}>{responses}</p>
+                  <p className={styles.views}>{views}</p>
+                </div>
               </div>
             </div>
           </Link>

@@ -1,8 +1,86 @@
-.post {
-  .imageContainer {
-    position: relative;
-    min-width: 3rem;
-    max-width: 3rem;
-    max-height: 3rem;
+@import 'styles/variables';
+.postSection {
+  border: $border-thin;
+  border-radius: 0.5rem 0.5rem 0 0;
+  overflow: hidden;
+  width: 100%;
+
+  .header {
+    padding: 1.5rem 0.5rem;
+    background-color: $color-header;
+  }
+
+  .post {
+    padding: 0.5rem;
+    grid-template-columns: 1fr 8rem 16rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: $border-thin;
+    background-color: rgb(36, 36, 36);
+    color: $color-text-gray;
+    cursor: pointer;
+
+    .imageContainer {
+      min-width: 3rem;
+      max-width: 3rem;
+      min-height: 3rem;
+      max-height: 3rem;
+      position: relative;
+
+      @media screen and (min-width: $breakpoint-mobile) {
+        min-width: 4rem;
+        max-width: 4rem;
+        min-height: 4rem;
+        max-height: 4rem;
+      }
+    }
+
+    .info {
+      width: 100%;
+
+      @media screen and (min-width: $breakpoint-mobile) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .details {
+        .postTitle {
+          margin-bottom: 0.5rem;
+          font-weight: bold;
+          color: $color-text;
+        }
+
+        .otherInfo {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 0.5rem;
+
+          @media screen and (min-width: $breakpoint-mobile) {
+            justify-content: flex-start;
+          }
+
+          .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+          }
+
+          .lastResponse {
+            @media screen and (min-width: $breakpoint-mobile) {
+              margin-left: 2rem;
+            }
+          }
+        }
+      }
+
+      .social {
+        display: flex;
+        gap: 1rem;
+      }
+    }
   }
 }

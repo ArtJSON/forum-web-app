@@ -3,42 +3,40 @@ import Head from 'next/head';
 
 import { CategorySection } from '../components/CategorySection/CategorySection';
 import { Location } from '../components/Location/Location';
+import { PostSection } from '../components/PostSection/PostSection';
 import { SearchBanner } from '../components/SearchBanner/SearchBanner';
+import styles from '../styles/Page.module.scss';
 
 const mockedCategories = [
   {
     categoryId: 'dsads',
-    categoryName: 'dsadasdsadasdasdasd',
-    categoryDescription:
-      'dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad dasdasdasdasda dasd ad as da sdas da sd ad ad as dasd a',
-    posts: 3,
+    categoryName: 'Announcements',
+    categoryDescription: 'Most important information regarding the FlashForum',
+    posts: 132,
     lastPost: 'yesterday',
   },
   {
     imgUrl:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Shield_Icon_White.png/640px-Shield_Icon_White.png',
     categoryId: 'test2',
-    categoryName: 'test ',
-    categoryDescription:
-      'Lorem Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad ad',
-    posts: 13,
+    categoryName: 'Sale offers',
+    categoryDescription: 'Find a buyer for your flashlight',
+    posts: 65,
     lastPost: '1 year ago',
   },
   {
     categoryId: 'test2',
-    categoryName: 'test ',
-    categoryDescription:
-      'Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad ad Lorem Lorem Lorem ',
-    posts: 34,
+    categoryName: 'Buy offers ',
+    categoryDescription: 'Looking for a specific model? Make a post here',
+    posts: 39,
     lastPost: '3 days ago',
   },
   {
     imgUrl:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
     categoryId: 'test3',
-    categoryName: 'test3 ',
-    categoryDescription:
-      'Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem da sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad ad',
+    categoryName: 'Questions and answers',
+    categoryDescription: 'Want to learn more? Ask the community for help',
     posts: 34,
     lastPost: 'About a week ago',
   },
@@ -46,11 +44,41 @@ const mockedCategories = [
     imgUrl:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
     categoryId: 'test42',
-    categoryName: 'test6 ',
+    categoryName: 'News',
     categoryDescription:
-      'Lorem Lorem Lorem Lorem da sdas da sd ad adda sdas da sd ad adda sdas da sd ad adda sdas da sd ad ad',
-    posts: 34,
+      'Check out the latest technologies and other news regarding flashlights',
+    posts: 31,
     lastPost: '9 days ago',
+  },
+];
+
+const mockedPosts = [
+  {
+    id: 'dsad',
+    title: 'Do Sofirn sp36 pro flashlights really have 8000 lumens?',
+    tags: ['Sofrin', 'Question'],
+    lastResponse: '3 minutes ago',
+    likes: 0,
+    responses: 2,
+    views: 13,
+  },
+  {
+    id: 'dsad2',
+    title: 'What is the best flashlight for divers?',
+    tags: ['Diving', 'Question'],
+    lastResponse: '19 minutes ago',
+    likes: 2,
+    responses: 21,
+    views: 129,
+  },
+  {
+    id: 'dsad3',
+    title: 'Want to sell Olight X9R',
+    tags: ['Olight'],
+    lastResponse: '1 hour ago',
+    likes: 6,
+    responses: 1,
+    views: 57,
   },
 ];
 
@@ -69,7 +97,15 @@ const Home: NextPage = () => {
           { label: 'Post', url: '/category/post' },
         ]}
       />
-      <CategorySection categories={mockedCategories} />
+      <div className={styles.maxWidthContainer}>
+        <CategorySection
+          title="Most popular categories"
+          categories={mockedCategories}
+        />
+      </div>
+      <div className={styles.maxWidthContainer}>
+        <PostSection title="Recent posts" posts={mockedPosts} />
+      </div>
     </>
   );
 };
