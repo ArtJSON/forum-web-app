@@ -5,6 +5,8 @@
   border-radius: 0.5rem 0.5rem 0 0;
   overflow: hidden;
   margin: 1rem;
+  max-width: $container-max-width;
+  flex-grow: 1;
 
   .header {
     padding: 1.5rem 0.5rem;

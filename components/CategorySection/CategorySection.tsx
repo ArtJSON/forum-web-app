@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { CONSTANTS } from '../../utils/constants';
 import styles from './CategorySection.module.scss';
 
 interface CategorySectionProps {
@@ -28,7 +29,7 @@ export const CategorySection = ({
       </div>
       {categories.map(
         ({
-          imgUrl = '',
+          imgUrl = CONSTANTS.NO_IMG_URL,
           categoryId,
           categoryName,
           categoryDescription = '',

@@ -2,6 +2,9 @@
 
 .pageContainer {
   min-height: calc(100vh - $footer-height-mobile);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @media screen and (min-width: $breakpoint-tablet) {
     min-height: calc(100vh - $footer-height-desktop);

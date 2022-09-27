@@ -7,8 +7,6 @@ import { SearchBanner } from '../components/SearchBanner/SearchBanner';
 
 const mockedCategories = [
   {
-    imgUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
     categoryId: 'dsads',
     categoryName: 'dsadasdsadasdasdasd',
     categoryDescription:
@@ -18,7 +16,7 @@ const mockedCategories = [
   },
   {
     imgUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Shield_Icon_White.png/640px-Shield_Icon_White.png',
     categoryId: 'test2',
     categoryName: 'test ',
     categoryDescription:
@@ -27,8 +25,6 @@ const mockedCategories = [
     lastPost: '1 year ago',
   },
   {
-    imgUrl:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Diamond_Icon_Transparent.png/640px-Diamond_Icon_Transparent.png',
     categoryId: 'test2',
     categoryName: 'test ',
     categoryDescription:
