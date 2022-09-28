@@ -1,19 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { CategoryListingType } from '../../types/ListingTypes';
 import { CONSTANTS } from '../../utils/constants';
 import styles from './CategorySection.module.scss';
 
 interface CategorySectionProps {
   title?: string;
-  categories: {
-    imgUrl?: string;
-    categoryId: string;
-    categoryName: string;
-    categoryDescription?: string;
-    posts: number;
-    lastPost: string;
-  }[];
+  categories: CategoryListingType[];
 }
 
 export const CategorySection = ({

@@ -1,22 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { PostListingType } from '../../types/ListingTypes';
 import { CONSTANTS } from '../../utils/constants';
 import { Tag } from '../Tag/Tag';
 import styles from './PostSection.module.scss';
 
 interface PostSectionProps {
   title?: string;
-  posts: {
-    userImgUrl?: string;
-    id: string;
-    title: string;
-    tags?: string[];
-    lastResponse: string;
-    likes: number;
-    responses: number;
-    views: number;
-  }[];
+  posts: PostListingType[];
 }
 
 export const PostSection = ({ title = 'Posts', posts }: PostSectionProps) => {
