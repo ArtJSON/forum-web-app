@@ -51,6 +51,7 @@
           margin-bottom: 0.5rem;
           font-weight: bold;
           color: $color-text;
+          word-break: break-word;
         }
 
         .otherInfo {
@@ -83,6 +84,7 @@
       .social {
         display: flex;
         gap: 1rem;
+        flex-wrap: wrap;
 
         .likes,
         .responses,
