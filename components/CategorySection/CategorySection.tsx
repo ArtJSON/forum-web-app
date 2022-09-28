@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { CategoryListingType } from '../../types/ListingTypes';
-import { CONSTANTS } from '../../utils/constants';
+import { constants } from '../../utils/constants';
 import styles from './CategorySection.module.scss';
 
 interface CategorySectionProps {
@@ -23,7 +23,7 @@ export const CategorySection = ({
       </div>
       {categories.map(
         ({
-          imgUrl = CONSTANTS.NO_IMG_URL,
+          imgUrl = constants.svg.NO_IMG_URL,
           categoryId,
           categoryName,
           categoryDescription = '',
