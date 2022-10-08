@@ -1,16 +1,18 @@
-import { GetServerSideProps, NextPage } from 'next';
-import Head from 'next/head';
+import { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
 
-import { Location } from '../../components/Location/Location';
-import '../../components/PostSection/PostSection';
-import { SearchBanner } from '../../components/SearchBanner/SearchBanner';
-import styles from '../../styles/Page.module.scss';
+import { Location } from "../../components/Location/Location";
+import "../../components/PostSection/PostSection";
+import { SearchBanner } from "../../components/SearchBanner/SearchBanner";
+import styles from "../../styles/Page.module.scss";
 
 interface PostPageProps {
-  comments: {}[];
+  comments: {
+    text: string;
+  }[];
 }
 
-const PostPage: NextPage<PostPageProps> = (props) => {
+const PostPage: NextPage<PostPageProps> = () => {
   return (
     <>
       <Head>
@@ -21,8 +23,8 @@ const PostPage: NextPage<PostPageProps> = (props) => {
       <SearchBanner />
       <Location
         paths={[
-          { label: 'test cateogry', url: '/category/dsadsa' },
-          { label: 'Test post', url: '/post/postid' },
+          { label: "test cateogry", url: "/category/dsadsa" },
+          { label: "Test post", url: "/post/postid" },
         ]}
       />
       <div className={styles.maxWidthContainer}></div>
@@ -32,7 +34,7 @@ const PostPage: NextPage<PostPageProps> = (props) => {
 
 export default PostPage;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const data = mockedComments;
 
   // if () {
@@ -56,13 +58,13 @@ const mockedComments = [
       page: 0,
     },
     info: {
-      title: 'Sofirn',
+      title: "Sofirn",
     },
     comments: [
       {
-        user: 'dsad',
-        comment: 'dasd',
-        date: 'yesterday',
+        user: "dsad",
+        comment: "dasd",
+        date: "yesterday",
       },
     ],
   },
