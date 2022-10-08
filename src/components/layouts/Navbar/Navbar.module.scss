@@ -1,0 +1,38 @@
+@import "src/styles/variables";
+
+.nav {
+  &.transparent {
+    background-color: transparent;
+  }
+
+  &:not(.transparent) {
+    box-shadow: $box-shadow-1;
+  }
+
+  transition: background-color $transition-default;
+  z-index: 100;
+
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color-secondary;
+  padding: 0.5rem;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1.5rem;
+
+    span {
+      margin-top: -0.25rem;
+    }
+  }
+
+  button {
+    background-color: unset;
+    border: none;
+  }
+}

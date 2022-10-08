@@ -1,0 +1,13 @@
+@import "src/styles/variables";
+
+.tag {
+  padding: 0.25rem;
+  background-color: $color-primary;
+  border-radius: 0.25rem;
+  display: inline-block;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: $color-text;
+}
