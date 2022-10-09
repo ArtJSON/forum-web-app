@@ -22,6 +22,6 @@ export default defineNextConfig({
     defaultLocale: "en",
   },
   images: {
-    domains: ["upload.wikimedia.org"],
+    domains: ["upload.wikimedia.org", "avatars.githubusercontent.com"],
   },
 });

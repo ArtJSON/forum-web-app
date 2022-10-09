@@ -7,17 +7,12 @@ import LogoIcon from "../../../../public/svg/icon.svg";
 import MenuIcon from "../../../../public/svg/menu.svg";
 import styles from "./Navbar.module.scss";
 
+import { useSession, signIn } from "next-auth/react";
+
 export const Navbar = () => {
-  const [isExtended, setIsExtended] = useState(false);
   const scrollPosition = useScrollPosition();
 
-  useEffect(() => {
-    if (isExtended) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [isExtended]);
+  const { data: session } = useSession();
 
   return (
     <nav
@@ -32,9 +27,18 @@ export const Navbar = () => {
         </a>
       </Link>
       <div className={styles.menu}>
-        <button onClick={() => setIsExtended(!isExtended)}>
-          <Image src={MenuIcon} />
-        </button>
+        {session ? (
+          <Image
+            width={40}
+            height={40}
+            src={session.user?.image ?? ""}
+            alt="User picture"
+          />
+        ) : (
+          <button onClick={() => signIn()}>
+            <Image src={MenuIcon} />
+          </button>
+        )}
       </div>
     </nav>
   );
