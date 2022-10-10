@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 import { useScrollPosition } from "../../../hooks/useScrollPosition";
 import LogoIcon from "../../../../public/svg/icon.svg";
-import MenuIcon from "../../../../public/svg/menu.svg";
+import LoginIcon from "../../../../public/svg/login.svg";
 import styles from "./Navbar.module.scss";
 
-import { useSession, signIn } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useState } from "react";
+import { Dropdown } from "../../Dropdown/Dropdown";
+import { constants } from "../../../utils/constants";
 
 export const Navbar = () => {
   const scrollPosition = useScrollPosition();
@@ -28,15 +30,30 @@ export const Navbar = () => {
       </Link>
       <div className={styles.menu}>
         {session ? (
-          <Image
-            width={40}
-            height={40}
-            src={session.user?.image ?? ""}
-            alt="User picture"
+          <Dropdown
+            toggle={
+              <div className={styles.userImage}>
+                <Image
+                  width={40}
+                  height={40}
+                  src={session.user?.image ?? constants.svg.NO_IMG_URL} // TODO: Change to other placeholder
+                  alt="User picture"
+                />
+              </div>
+            }
+            options={[
+              // TODO: Add correct profile redirect
+              <Link href="/profile" key="profile">
+                Your profile
+              </Link>,
+              <button onClick={() => signOut()} key="logout">
+                Logout
+              </button>,
+            ]}
           />
         ) : (
           <button onClick={() => signIn()}>
-            <Image src={MenuIcon} />
+            <Image src={LoginIcon} alt="Login" />
           </button>
         )}
       </div>

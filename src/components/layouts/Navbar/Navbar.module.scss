@@ -31,8 +31,24 @@
     }
   }
 
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .userImage {
+      border-radius: 10rem;
+      span {
+        border-radius: 10rem;
+      }
+    }
+  }
+
   button {
     background-color: unset;
     border: none;
+    display: flex;
+    padding: 0;
   }
 }
