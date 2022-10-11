@@ -32,7 +32,7 @@ export const Dropdown = ({ options = [], toggle }: DropdownProps) => {
 
   return (
     <div ref={dropdwonRef} className={styles.dropdown}>
-      <div onClick={() => setDropdownOpen(true)}>{toggle}</div>
+      <div onClick={() => setDropdownOpen((prev) => !prev)}>{toggle}</div>
 
       <ul
         className={`${styles.dropdownOptions} ${

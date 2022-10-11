@@ -21,3 +21,20 @@ export const authedProcedure = t.procedure.use(({ ctx, next }) => {
     },
   });
 });
+
+export const adminProcedure = t.procedure.use(async ({ ctx, next }) => {
+  const userData = await ctx.prisma.user.findUnique({
+    where: { id: ctx.session?.user?.id },
+  });
+
+  if (!ctx.session || !ctx.session.user || userData?.role !== "ADMIN") {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({
+    ctx: {
+      ...ctx,
+      // infers that `session` is non-nullable to downstream resolvers
+      session: { ...ctx.session, user: ctx.session.user },
+    },
+  });
+});

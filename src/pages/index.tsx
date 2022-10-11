@@ -6,17 +6,15 @@ import { SearchBanner } from "../components/SearchBanner/SearchBanner";
 import { PostSection } from "../components/PostSection/PostSection";
 import { CategorySection } from "../components/CategorySection/CategorySection";
 import { Location } from "../components/Location/Location";
-import { CategoryListingType, PostListingType } from "../types/ListingTypes";
-
+import { PostListingType } from "../types/ListingTypes";
+import { trpc } from "../utils/trpc";
 interface HomePageProps {
-  mostPopularCategories: CategoryListingType[];
   recentPosts: PostListingType[];
 }
 
-const HomePage: NextPage<HomePageProps> = ({
-  mostPopularCategories,
-  recentPosts,
-}: HomePageProps) => {
+const HomePage: NextPage<HomePageProps> = ({ recentPosts }: HomePageProps) => {
+  const categories = trpc.category.getAll.useQuery().data ?? [];
+
   return (
     <>
       <Head>
@@ -29,7 +27,7 @@ const HomePage: NextPage<HomePageProps> = ({
       <div className={styles.maxWidthContainer}>
         <CategorySection
           title="Most popular categories"
-          categories={mostPopularCategories}
+          categories={categories}
         />
       </div>
       <div className={styles.maxWidthContainer}>
@@ -44,7 +42,7 @@ export default HomePage;
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   return {
     props: {
-      mostPopularCategories: mockedCategories,
+      mostPopularCategories: [],
       recentPosts: mockedPosts,
     },
     revalidate: 60,

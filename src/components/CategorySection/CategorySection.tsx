@@ -1,17 +1,22 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import { Category } from "@prisma/client";
+import Image from "next/image";
+import Link from "next/link";
 
-import { CategoryListingType } from '../../types/ListingTypes';
-import { constants } from '../../utils/constants';
-import styles from './CategorySection.module.scss';
+import { constants } from "../../utils/constants";
+import styles from "./CategorySection.module.scss";
+
+import { AppRouter } from "../../server/trpc/router";
+import { inferProcedureOutput } from "@trpc/server";
+
+type t = inferProcedureOutput<AppRouter["category"]["getAll"]>;
 
 interface CategorySectionProps {
   title?: string;
-  categories: CategoryListingType[];
+  categories: t;
 }
 
 export const CategorySection = ({
-  title = 'Categories',
+  title = "Categories",
   categories,
 }: CategorySectionProps) => {
   return (
@@ -21,34 +26,27 @@ export const CategorySection = ({
         <p className={styles.postsHeader}>Posts</p>
         <p className={styles.lastPostHeader}>Last Post</p>
       </div>
-      {categories.map(
-        ({
-          imgUrl = constants.svg.NO_IMG_URL,
-          categoryId,
-          categoryName,
-          categoryDescription = '',
-          posts,
-          lastPost,
-        }) => (
-          <Link key={categoryId} href={`category/${categoryId}`}>
-            <div className={styles.category}>
-              <div className={styles.info}>
-                <div className={styles.iconContainer}>
-                  <Image layout="fill" src={imgUrl} />
-                </div>
-                <div>
-                  <p className={styles.categoryName}>{categoryName}</p>
-                  <p className={styles.categoryDescription}>
-                    {categoryDescription}
-                  </p>
-                </div>
+      {categories.map(({ image, id, name, description = "", posts }) => (
+        <Link key={id} href={`category/${id}`}>
+          <div className={styles.category}>
+            <div className={styles.info}>
+              <div className={styles.iconContainer}>
+                <Image
+                  layout="fill"
+                  src={image ?? constants.svg.NO_IMG_URL}
+                  alt="Category logo"
+                />
               </div>
-              <p className={styles.posts}>{posts}</p>
-              <p className={styles.lastPost}>{lastPost}</p>
+              <div>
+                <p className={styles.categoryName}>{name}</p>
+                <p className={styles.categoryDescription}>{description}</p>
+              </div>
             </div>
-          </Link>
-        )
-      )}
+            <p className={styles.posts}>{posts}</p>
+            <p className={styles.lastPost}>{1}</p>
+          </div>
+        </Link>
+      ))}
     </div>
   );
 };
