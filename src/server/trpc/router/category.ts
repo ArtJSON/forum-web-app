@@ -64,7 +64,6 @@ export const categoryRouter = t.router({
           description: input.description,
           name: input.name,
           image: input.image,
-          userId: ctx.session.user.id,
         },
       });
 
