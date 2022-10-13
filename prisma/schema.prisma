@@ -70,25 +70,34 @@ model VerificationToken {
 }
 
 model Category {
+    <<<<<<< HEAD
     id          String   @id @default(cuid())
     name        String
     description String
     image       String?
     createdAt   DateTime @default(now())
     updatedAt   DateTime @default(now()) @updatedAt
+    =======
+    id          String   @id @default(cuid())
+    name        String
+    userId      String
+    description String
+    image       String?
+    >>>>>>> 8009dd689ad341d0df5f4533cada3ac873ae1e73
 
     posts Post[]
 }
 
 model Post {
-    id        String    @id @default(cuid())
+    id        String   @id @default(cuid())
     name      String
-    views     Int       @default(0)
-    createdAt DateTime  @default(now())
-    updatedAt DateTime  @default(now()) @updatedAt
+    views     Int      @default(0)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now()) @updatedAt
     tags      String[]
     content   String
-    comments  Comment[]
+
+    comments Comment[]
 
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
     userId String
