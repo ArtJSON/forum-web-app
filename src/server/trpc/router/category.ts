@@ -1,21 +1,56 @@
-import { adminProcedure, authedProcedure, t } from "../trpc";
+import { adminProcedure, t } from "../trpc";
 import { z } from "zod";
-import { prisma } from "../../../server/db/client";
+import { constants } from "../../../utils/constants";
+import { TRPCError } from "@trpc/server";
 
 export const categoryRouter = t.router({
   getAll: t.procedure.query(async ({ ctx }) => {
-    const res = await ctx.prisma.category.findMany({
+    const categoryData = await ctx.prisma.category.findMany({
       include: {
         posts: true,
       },
     });
 
-    return res.map((a) => ({
+    // TODO: Refactor, unnecessary returns posts
+
+    return categoryData.map((a) => ({
       ...a,
       posts: a.posts.length,
     }));
   }),
-  addPost: adminProcedure
+  getCategoryById: t.procedure
+    .input(
+      z.object({
+        id: z.string(),
+        page: z.number().optional(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const categoryInDb = await ctx.prisma.category.findUnique({
+        where: {
+          id: input.id,
+        },
+        include: {
+          posts: {
+            skip: (input.page ?? 0) * constants.PAGINATION_SIZE,
+            take: constants.PAGINATION_SIZE,
+          },
+        },
+      });
+
+      if (!categoryInDb) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "This category does not exist.",
+        });
+      }
+
+      return {
+        ...categoryInDb,
+        pages: categoryInDb.posts.length / constants.PAGINATION_SIZE + 1,
+      };
+    }),
+  addCategory: adminProcedure
     .input(
       z.object({
         name: z.string().max(50),
@@ -24,7 +59,7 @@ export const categoryRouter = t.router({
       })
     )
     .query(async ({ ctx, input }) => {
-      const categoryInDb = await prisma.category.create({
+      const categoryInDb = await ctx.prisma.category.create({
         data: {
           description: input.description,
           name: input.name,

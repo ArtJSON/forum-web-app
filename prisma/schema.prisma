@@ -70,11 +70,12 @@ model VerificationToken {
 }
 
 model Category {
-    id          String  @id @default(cuid())
+    id          String   @id @default(cuid())
     name        String
-    userId      String
     description String
     image       String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @default(now()) @updatedAt
 
     posts Post[]
 }
@@ -84,7 +85,9 @@ model Post {
     name      String
     views     Int       @default(0)
     createdAt DateTime  @default(now())
-    updatedAt DateTime  @updatedAt
+    updatedAt DateTime  @default(now()) @updatedAt
+    tags      String[]
+    content   String
     comments  Comment[]
 
     user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

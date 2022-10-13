@@ -22,6 +22,7 @@
 
       .postsHeader,
       .lastPostHeader {
+        text-align: end;
         display: flex;
         justify-content: flex-end;
       }
@@ -47,6 +48,7 @@
       grid-template-columns: 1fr 8rem 16rem;
       .posts,
       .lastPost {
+        text-align: end;
         display: flex;
         justify-content: flex-end;
         align-items: center;

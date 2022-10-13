@@ -23,7 +23,7 @@ const PostPage: NextPage<PostPageProps> = () => {
       <SearchBanner />
       <Location
         paths={[
-          { label: "test cateogry", url: "/category/dsadsa" },
+          { label: "test cateogry", url: "/category/dsadsa" }, // TODO: Fetch correct category ID
           { label: "Test post", url: "/post/postid" },
         ]}
       />
@@ -34,38 +34,18 @@ const PostPage: NextPage<PostPageProps> = () => {
 
 export default PostPage;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const data = mockedComments;
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//   const dupa = ctx.query;
 
-  // if () {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+//   // if () {
+//   //   return {
+//   //     notFound: true,
+//   //   };
+//   // }
 
-  return {
-    props: {
-      ...data,
-    },
-  };
-};
-
-const mockedComments = [
-  {
-    meta: {
-      size: 25,
-      total: 129,
-      page: 0,
-    },
-    info: {
-      title: "Sofirn",
-    },
-    comments: [
-      {
-        user: "dsad",
-        comment: "dasd",
-        date: "yesterday",
-      },
-    ],
-  },
-];
+//   return {
+//     props: {
+//       ...data,
+//     },
+//   };
+// };

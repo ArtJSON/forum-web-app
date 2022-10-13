@@ -1,18 +1,14 @@
-import { Category } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
 import { constants } from "../../utils/constants";
 import styles from "./CategorySection.module.scss";
 
-import { AppRouter } from "../../server/trpc/router";
-import { inferProcedureOutput } from "@trpc/server";
-
-type t = inferProcedureOutput<AppRouter["category"]["getAll"]>;
+import { CategoriesListingResponseType } from "../../types/ListingTypes";
 
 interface CategorySectionProps {
   title?: string;
-  categories: t;
+  categories: CategoriesListingResponseType;
 }
 
 export const CategorySection = ({
@@ -26,27 +22,29 @@ export const CategorySection = ({
         <p className={styles.postsHeader}>Posts</p>
         <p className={styles.lastPostHeader}>Last Post</p>
       </div>
-      {categories.map(({ image, id, name, description = "", posts }) => (
-        <Link key={id} href={`category/${id}`}>
-          <div className={styles.category}>
-            <div className={styles.info}>
-              <div className={styles.iconContainer}>
-                <Image
-                  layout="fill"
-                  src={image ?? constants.svg.NO_IMG_URL}
-                  alt="Category logo"
-                />
+      {categories.map(
+        ({ image, id, name, description = "", posts, updatedAt }) => (
+          <Link key={id} href={`category/${id}`}>
+            <div className={styles.category}>
+              <div className={styles.info}>
+                <div className={styles.iconContainer}>
+                  <Image
+                    layout="fill"
+                    src={image ?? constants.svg.NO_IMG_URL}
+                    alt="Category logo"
+                  />
+                </div>
+                <div>
+                  <p className={styles.categoryName}>{name}</p>
+                  <p className={styles.categoryDescription}>{description}</p>
+                </div>
               </div>
-              <div>
-                <p className={styles.categoryName}>{name}</p>
-                <p className={styles.categoryDescription}>{description}</p>
-              </div>
+              <p className={styles.posts}>{posts}</p>
+              <p className={styles.lastPost}>{updatedAt.toTimeString()}</p>
             </div>
-            <p className={styles.posts}>{posts}</p>
-            <p className={styles.lastPost}>{1}</p>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        )
+      )}
     </div>
   );
 };
