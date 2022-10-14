@@ -61,15 +61,10 @@ CREATE TABLE "VerificationToken" (
 CREATE TABLE "Category" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "userId" TEXT NOT NULL,
-<<<<<<<< HEAD:prisma/migrations/20221013211455_/migration.sql
     "description" TEXT NOT NULL,
     "image" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-========
-    "content" TEXT NOT NULL,
->>>>>>>> 8009dd689ad341d0df5f4533cada3ac873ae1e73:prisma/migrations/20221011191415_/migration.sql
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Category_pkey" PRIMARY KEY ("id")
 );
@@ -80,12 +75,9 @@ CREATE TABLE "Post" (
     "name" TEXT NOT NULL,
     "views" INTEGER NOT NULL DEFAULT 0,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-<<<<<<<< HEAD:prisma/migrations/20221013211455_/migration.sql
+    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "tags" TEXT[],
     "content" TEXT NOT NULL,
-========
->>>>>>>> 8009dd689ad341d0df5f4533cada3ac873ae1e73:prisma/migrations/20221011191415_/migration.sql
     "userId" TEXT NOT NULL,
     "categoryId" TEXT NOT NULL,
 
