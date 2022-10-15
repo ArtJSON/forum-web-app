@@ -47,7 +47,7 @@ model Session {
 
 model User {
     id            String    @id @default(cuid())
-    name          String?
+    username      String?
     email         String?   @unique
     emailVerified DateTime?
     image         String?
@@ -81,13 +81,13 @@ model Category {
 }
 
 model Post {
-    id        String   @id @default(cuid())
-    name      String
-    views     Int      @default(0)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @default(now()) @updatedAt
-    tags      String[]
-    content   String
+    id          String   @id @default(cuid())
+    name        String
+    views       Int      @default(0)
+    createdAt   DateTime @default(now())
+    lastComment DateTime @default(now())
+    tags        String[]
+    content     String
 
     comments Comment[]
 

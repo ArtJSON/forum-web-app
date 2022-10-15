@@ -1,15 +1,6 @@
+import { Post } from "@prisma/client";
 import { inferProcedureOutput } from "@trpc/server";
 import { AppRouter } from "../server/trpc/router";
-
-export interface PostListingType {
-  id: string;
-  title: string;
-  tags?: string[];
-  lastResponse: string;
-  likes: number;
-  responses: number;
-  views: number;
-}
 
 export type CategoriesListingResponseType = inferProcedureOutput<
   AppRouter["category"]["getAll"]
@@ -24,3 +15,9 @@ export type PostListingResponseType = inferProcedureOutput<
 >;
 
 export type PostSectionType = PostListingResponseType["posts"];
+
+export type PostType = Post & { username?: string };
+
+export type PostCommentsType = inferProcedureOutput<
+  AppRouter["post"]["getPostById"]
+>["comments"];

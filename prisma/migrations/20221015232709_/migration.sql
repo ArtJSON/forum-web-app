@@ -39,7 +39,7 @@ CREATE TABLE "Session" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "username" TEXT,
     "email" TEXT,
     "emailVerified" TIMESTAMP(3),
     "image" TEXT,
@@ -75,7 +75,7 @@ CREATE TABLE "Post" (
     "name" TEXT NOT NULL,
     "views" INTEGER NOT NULL DEFAULT 0,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "lastComment" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "tags" TEXT[],
     "content" TEXT NOT NULL,
     "userId" TEXT NOT NULL,

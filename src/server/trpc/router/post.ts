@@ -1,5 +1,5 @@
 import { authedProcedure, t } from "../trpc";
-import { z } from "zod";
+import { boolean, z } from "zod";
 import { constants } from "../../../utils/constants";
 import { TRPCError } from "@trpc/server";
 
@@ -18,7 +18,7 @@ export const postRouter = t.router({
         include: {
           posts: {
             orderBy: {
-              updatedAt: "asc",
+              updatedAt: "desc",
             },
             include: {
               comments: {
@@ -37,8 +37,6 @@ export const postRouter = t.router({
           message: "This category does not exist.",
         });
       }
-
-      // id, name, tags, lastResponse, likes, responses, views
 
       return {
         ...categoryData,
@@ -72,7 +70,7 @@ export const postRouter = t.router({
     .input(
       z.object({
         title: z.string().max(50),
-        content: z.string().max(2000),
+        content: z.string().max(20000),
         categoryId: z.string(),
         tags: z.array(z.string().max(15)).max(3),
       })
@@ -89,6 +87,47 @@ export const postRouter = t.router({
           userId: ctx.session.user.id,
           categoryId: input.categoryId,
           tags: processedTags,
+        },
+      });
+
+      return postInDb;
+    }),
+  getPostById: t.procedure
+    .input(
+      z.object({
+        id: z.string(),
+        page: z.number().optional(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const postInDb = await ctx.prisma.post.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          views: {
+            increment: 1,
+          },
+        },
+        include: {
+          comments: {
+            skip: (input.page ?? 0) * constants.PAGINATION_SIZE,
+            take: constants.PAGINATION_SIZE,
+            orderBy: {
+              createdAt: "asc",
+            },
+          },
+          category: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+          user: {
+            select: {
+              username: true,
+            },
+          },
         },
       });
 

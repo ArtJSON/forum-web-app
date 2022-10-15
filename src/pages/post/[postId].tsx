@@ -2,17 +2,33 @@ import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 
 import { Location } from "../../components/Location/Location";
+import { Post } from "../../components/Post/Post";
 import "../../components/PostSection/PostSection";
 import { SearchBanner } from "../../components/SearchBanner/SearchBanner";
 import styles from "../../styles/Page.module.scss";
+import { trpc } from "../../utils/trpc";
 
 interface PostPageProps {
-  comments: {
-    text: string;
-  }[];
+  postId: string;
 }
 
-const PostPage: NextPage<PostPageProps> = () => {
+const PostPage: NextPage<PostPageProps> = ({ postId }) => {
+  const { data } = trpc.post.getPostById.useQuery(
+    {
+      id: postId,
+      page: 0,
+    },
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+
+  console.log(data);
+
+  if (!data) {
+    return <></>;
+  }
+
   return (
     <>
       <Head>
@@ -23,29 +39,23 @@ const PostPage: NextPage<PostPageProps> = () => {
       <SearchBanner />
       <Location
         paths={[
-          { label: "test cateogry", url: "/category/dsadsa" }, // TODO: Fetch correct category ID
+          { label: data?.category.name, url: `/category/${data?.categoryId}` }, // TODO: Fetch correct category ID
           { label: "Test post", url: "/post/postid" },
         ]}
       />
-      <div className={styles.maxWidthContainer}></div>
+      <div className={styles.maxWidthContainer}>
+        <Post {...data} />
+      </div>
     </>
   );
 };
 
 export default PostPage;
 
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//   const dupa = ctx.query;
-
-//   // if () {
-//   //   return {
-//   //     notFound: true,
-//   //   };
-//   // }
-
-//   return {
-//     props: {
-//       ...data,
-//     },
-//   };
-// };
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  return {
+    props: {
+      postId: `${ctx.query.postId}`,
+    },
+  };
+};

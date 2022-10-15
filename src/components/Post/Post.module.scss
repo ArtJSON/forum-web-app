@@ -1,0 +1,28 @@
+@import "src/styles/variables";
+
+.post {
+  background-color: $color-secondary;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+
+  .postInfo {
+    header {
+      padding: 0.5rem 0;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: solid 2px gray;
+
+      h1 {
+        font-size: 1.25rem;
+        text-transform: capitalize;
+      }
+
+      .tags {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ export const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
       .required("Required"),
     content: Yup.string()
       .min(10, "The content is too short!")
-      .max(2000, "The content is too long!")
+      .max(20000, "The content is too long!")
       .required("Required"),
     tag1: Yup.string()
       .max(15, "The tag is too long!")
@@ -85,7 +85,7 @@ export const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
               className={`${styles.field} ${styles.textarea} ${
                 errors.content ? styles.error : ""
               }`}
-              maxLength={2000}
+              maxLength={20000}
             />
 
             <label htmlFor="tag1">Tags (optional)</label>
