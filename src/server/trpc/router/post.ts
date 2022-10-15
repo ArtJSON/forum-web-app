@@ -1,4 +1,4 @@
-import { t } from "../trpc";
+import { authedProcedure, t } from "../trpc";
 import { z } from "zod";
 import { constants } from "../../../utils/constants";
 import { TRPCError } from "@trpc/server";
@@ -58,7 +58,7 @@ export const postRouter = t.router({
         },
       },
       orderBy: {
-        createdAt: "asc",
+        createdAt: "desc",
       },
       take: constants.PAGINATION_SIZE,
     });
@@ -68,4 +68,26 @@ export const postRouter = t.router({
       responses: post.comments.length,
     }));
   }),
+  addPost: authedProcedure
+    .input(
+      z.object({
+        title: z.string().max(50),
+        content: z.string().max(2000),
+        categoryId: z.string(),
+        tags: z.array(z.string().max(15)).max(3),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const postInDb = await ctx.prisma.post.create({
+        data: {
+          name: input.title,
+          content: input.title,
+          userId: ctx.session.user.id,
+          categoryId: input.categoryId,
+          tags: input.tags ?? [],
+        },
+      });
+
+      return postInDb;
+    }),
 });

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import ReactDOM, { createPortal } from "react-dom";
+import { createPortal } from "react-dom";
+import { useScrollLock } from "../../hooks/useScrollLock";
 import styles from "./Modal.module.scss";
 
 interface ModalProps {
@@ -10,12 +11,23 @@ interface ModalProps {
 
 export const Modal = ({ children, isOpen, onClose }: ModalProps) => {
   const [mounted, setMounted] = useState(false);
+  const { lockScroll, unlockScroll } = useScrollLock();
 
   useEffect(() => {
     setMounted(true);
 
-    return () => setMounted(false);
+    return () => {
+      setMounted(false);
+    };
   }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      lockScroll();
+    } else {
+      unlockScroll();
+    }
+  }, [isOpen]);
 
   if (!isOpen) {
     return null;
