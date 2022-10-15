@@ -85,7 +85,7 @@ export const postRouter = t.router({
       const postInDb = await ctx.prisma.post.create({
         data: {
           name: input.title,
-          content: input.title,
+          content: input.content,
           userId: ctx.session.user.id,
           categoryId: input.categoryId,
           tags: processedTags,
