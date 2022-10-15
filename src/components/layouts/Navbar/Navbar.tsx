@@ -35,7 +35,9 @@ export const Navbar = () => {
                 <Image
                   width={40}
                   height={40}
-                  src={session.user?.image ?? constants.svg.NO_IMG_URL} // TODO: Change to other placeholder
+                  src={
+                    session.user?.image ?? constants.svg.DEFAULT_PROFILE_PIC_URL
+                  } // TODO: Change to other placeholder
                   alt="User picture"
                 />
               </div>

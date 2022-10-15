@@ -5,6 +5,7 @@ export const constants = {
     HEART_URL: "/svg/heart.svg",
     EYE_URL: "/svg/eye.svg",
     CALENDAR_URL: "/svg/calendar.svg",
+    DEFAULT_PROFILE_PIC_URL: "/img.jpg",
   },
   PAGINATION_SIZE: 25,
 };
