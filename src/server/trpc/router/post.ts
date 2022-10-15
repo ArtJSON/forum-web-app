@@ -78,13 +78,17 @@ export const postRouter = t.router({
       })
     )
     .mutation(async ({ ctx, input }) => {
+      const processedTags: string[] = input.tags
+        .map((tag) => tag.toLowerCase())
+        .filter((val, idx, self) => self.indexOf(val) === idx);
+
       const postInDb = await ctx.prisma.post.create({
         data: {
           name: input.title,
           content: input.title,
           userId: ctx.session.user.id,
           categoryId: input.categoryId,
-          tags: input.tags ?? [],
+          tags: processedTags,
         },
       });
 

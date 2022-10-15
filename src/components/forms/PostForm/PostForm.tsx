@@ -21,9 +21,24 @@ export const PostForm: React.FC<PostFormProps> = ({ onSubmit }) => {
       .min(10, "The content is too short!")
       .max(2000, "The content is too long!")
       .required("Required"),
-    tag1: Yup.string().max(15, "The tag is too long!"),
-    tag2: Yup.string().max(15, "The tag is too long!"),
-    tag3: Yup.string().max(15, "The tag is too long!"),
+    tag1: Yup.string()
+      .max(15, "The tag is too long!")
+      .matches(
+        /^[a-zA-Z0-9@]+$/,
+        "Tag cannot contain white spaces and special characters"
+      ),
+    tag2: Yup.string()
+      .max(15, "The tag is too long!")
+      .matches(
+        /^[a-zA-Z0-9@]+$/,
+        "Tag cannot contain white spaces and special characters"
+      ),
+    tag3: Yup.string()
+      .max(15, "The tag is too long!")
+      .matches(
+        /^[a-zA-Z0-9@]+$/,
+        "Tag cannot contain white spaces and special characters"
+      ),
   });
 
   return (
