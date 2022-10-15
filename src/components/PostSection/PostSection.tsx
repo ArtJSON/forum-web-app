@@ -18,7 +18,7 @@ export const PostSection = ({ title = "Posts", posts }: PostSectionProps) => {
       <div className={styles.header}>
         <div className={styles.posts}>{title}</div>
       </div>
-      {posts.map(({ id, name, tags, updatedAt, views, responses }) => (
+      {posts.map(({ id, name, tags, lastComment, views, responses }) => (
         <Link key={id} href={`/post/${id}`}>
           <div className={styles.post}>
             <div className={styles.info}>
@@ -37,7 +37,7 @@ export const PostSection = ({ title = "Posts", posts }: PostSectionProps) => {
                       src={constants.svg.CALENDAR_URL}
                       alt="Last response"
                     />
-                    <span>{updatedAt.toDateString()}</span>
+                    <span>{lastComment.toDateString()}</span>
                   </div>
                 </div>
               </div>

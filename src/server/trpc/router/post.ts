@@ -18,7 +18,7 @@ export const postRouter = t.router({
         include: {
           posts: {
             orderBy: {
-              updatedAt: "desc",
+              lastComment: "desc",
             },
             include: {
               comments: {
@@ -125,7 +125,7 @@ export const postRouter = t.router({
           },
           user: {
             select: {
-              username: true,
+              displayName: true,
             },
           },
         },

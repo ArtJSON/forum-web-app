@@ -11,12 +11,12 @@ export const Post = ({
   views,
   userId,
   content,
-  username,
+  displayName,
 }: PostType) => {
   return (
     <div className={styles.post}>
       <div className={styles.userInfo}>
-        <span>{username}</span>
+        <span>{displayName}</span>
         <span> on </span>
         <span>{createdAt.toDateString()}:</span>
       </div>
