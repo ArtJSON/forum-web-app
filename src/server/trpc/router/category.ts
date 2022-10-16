@@ -1,7 +1,8 @@
-import { adminProcedure, t } from "../trpc";
-import { z } from "zod";
-import { constants } from "../../../utils/constants";
 import { TRPCError } from "@trpc/server";
+import { z } from "zod";
+
+import { constants } from "../../../utils/constants";
+import { adminProcedure, t } from "../trpc";
 
 export const categoryRouter = t.router({
   getAll: t.procedure.query(async ({ ctx }) => {

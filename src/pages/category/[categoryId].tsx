@@ -1,15 +1,16 @@
 import { GetServerSideProps, NextPage } from "next";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
-import { trpc } from "../../utils/trpc";
-import { Modal } from "../../components/Modal/Modal";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 import { Location } from "../../components/Location/Location";
+import { Modal } from "../../components/Modal/Modal";
 import { PostSection } from "../../components/PostSection/PostSection";
 import { SearchBanner } from "../../components/SearchBanner/SearchBanner";
-import styles from "../../styles/Page.module.scss";
-import { useState } from "react";
 import { PostForm } from "../../components/forms/PostForm/PostForm";
-import { useSession } from "next-auth/react";
+import styles from "../../styles/Page.module.scss";
+import { trpc } from "../../utils/trpc";
 
 interface CategoryListingProps {
   categoryId: string;
@@ -27,6 +28,7 @@ const CategoryListing: NextPage<CategoryListingProps> = ({
     onSuccess: () => {
       refetch();
     },
+    onError: (error) => toast.error(`Something went wrong: ${error.message}`),
   });
 
   const { data: session } = useSession();

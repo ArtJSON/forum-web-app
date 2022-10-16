@@ -1,11 +1,11 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
-import GithubProvider from "next-auth/providers/github";
-import EmailProvider from "next-auth/providers/email";
-
 // Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "../../../server/db/client";
+import NextAuth, { type NextAuthOptions } from "next-auth";
+import EmailProvider from "next-auth/providers/email";
+import GithubProvider from "next-auth/providers/github";
+
 import { env } from "../../../env/server.mjs";
+import { prisma } from "../../../server/db/client";
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session

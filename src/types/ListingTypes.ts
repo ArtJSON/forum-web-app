@@ -1,5 +1,6 @@
 import { Post } from "@prisma/client";
 import { inferProcedureOutput } from "@trpc/server";
+
 import { AppRouter } from "../server/trpc/router";
 
 export type CategoriesListingResponseType = inferProcedureOutput<

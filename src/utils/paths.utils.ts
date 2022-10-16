@@ -1,3 +1,3 @@
 export const defragmentUrl = (url: string) => {
-  return url.substring(1).split('/');
+  return url.substring(1).split("/");
 };

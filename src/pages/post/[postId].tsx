@@ -1,5 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
+import toast from "react-hot-toast";
 
 import { Location } from "../../components/Location/Location";
 import { Post } from "../../components/Post/Post";
@@ -23,8 +24,6 @@ const PostPage: NextPage<PostPageProps> = ({ postId }) => {
     }
   );
 
-  console.log(data);
-
   if (!data) {
     return <></>;
   }
@@ -39,7 +38,7 @@ const PostPage: NextPage<PostPageProps> = ({ postId }) => {
       <SearchBanner />
       <Location
         paths={[
-          { label: data?.category.name, url: `/category/${data?.categoryId}` }, // TODO: Fetch correct category ID
+          { label: data?.category.name, url: `/category/${data?.categoryId}` },
           { label: "Test post", url: "/post/postid" },
         ]}
       />

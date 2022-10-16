@@ -1,11 +1,11 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Page.module.scss";
 
-import { SearchBanner } from "../components/SearchBanner/SearchBanner";
-import { PostSection } from "../components/PostSection/PostSection";
 import { CategorySection } from "../components/CategorySection/CategorySection";
 import { Location } from "../components/Location/Location";
+import { PostSection } from "../components/PostSection/PostSection";
+import { SearchBanner } from "../components/SearchBanner/SearchBanner";
+import styles from "../styles/Page.module.scss";
 import { trpc } from "../utils/trpc";
 
 const HomePage: NextPage = () => {
