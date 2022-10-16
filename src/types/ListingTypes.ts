@@ -22,3 +22,7 @@ export type PostType = Post & { displayName?: string };
 export type PostCommentsType = inferProcedureOutput<
   AppRouter["post"]["getPostById"]
 >["comments"];
+
+export type UserDataType = inferProcedureOutput<
+  AppRouter["profile"]["getProfileById"]
+>;
