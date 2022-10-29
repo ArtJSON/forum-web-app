@@ -23,7 +23,7 @@ export const UserInfo = ({
         <li>
           {displayName ? (
             <>
-              <div>Display name:</div>
+              z<div>Display name:</div>
               <div>{displayName}</div>
             </>
           ) : (
