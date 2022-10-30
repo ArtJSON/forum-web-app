@@ -3,11 +3,15 @@ import * as Yup from "yup";
 
 import styles from "./UserDataForm.module.scss";
 
-export const UserDataForm = () => {
+interface UserDataFormProps {
+  onSubmit: (values: { displayName: string; imageUrl: string }) => void;
+}
+
+export const UserDataForm = ({ onSubmit }: UserDataFormProps) => {
   return (
     <Formik
       initialValues={{ displayName: "", imageUrl: "" }}
-      onSubmit={() => {}}
+      onSubmit={(values) => onSubmit(values)}
     >
       {({ errors }) => (
         <Form className={styles.form}>
@@ -39,8 +43,8 @@ export const UserDataForm = () => {
             <Field
               id="imageUrl"
               name="imageUrl"
-              placeholder="imageUrl..."
-              className={`${styles.field} ${styles.textarea} ${
+              placeholder="Image URL..."
+              className={`${styles.field} ${
                 errors.imageUrl ? styles.error : ""
               }`}
               maxLength={20000}
