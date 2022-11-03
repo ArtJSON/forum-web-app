@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import styles from "./UserDataForm.module.scss";
 
 interface UserDataFormProps {
-  onSubmit: (values: { displayName: string; imageUrl: string }) => void;
+  onSubmit: (values: { displayName: string }) => void;
 }
 
 export const UserDataForm = ({ onSubmit }: UserDataFormProps) => {
@@ -32,22 +32,6 @@ export const UserDataForm = ({ onSubmit }: UserDataFormProps) => {
                 errors.displayName ? styles.error : ""
               }`}
               maxLength={50}
-            />
-
-            <div className={styles.labelWrapper}>
-              <label htmlFor="imageUrl">Image URL</label>
-              {errors.imageUrl && (
-                <span className={styles.errorMessage}>{errors.imageUrl}</span>
-              )}
-            </div>
-            <Field
-              id="imageUrl"
-              name="imageUrl"
-              placeholder="Image URL..."
-              className={`${styles.field} ${
-                errors.imageUrl ? styles.error : ""
-              }`}
-              maxLength={20000}
             />
           </div>
 

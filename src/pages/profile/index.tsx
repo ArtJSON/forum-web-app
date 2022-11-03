@@ -1,7 +1,8 @@
 import { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 import { Modal } from "../../components/Modal/Modal";
 import { PostSection } from "../../components/PostSection/PostSection";
@@ -11,16 +12,24 @@ import styles from "../../styles/Page.module.scss";
 import { trpc } from "../../utils/trpc";
 
 const PersonalPage: NextPage = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const router = useRouter();
   const { data: session } = useSession();
+
+  const updateProfileMutation = trpc.profile.updateProfileData.useMutation({
+    onError: (error) => toast.error(`Something went wrong: ${error.message}`),
+    onSuccess: () => {
+      refetch();
+    },
+  });
 
   useEffect(() => {
     if (!session) {
       router.push("/");
     }
-  }, []);
+  }, [router, session]);
 
-  const { data } = trpc.profile.getProfileById.useQuery(
+  const { data, refetch } = trpc.profile.getProfileById.useQuery(
     {
       id: session?.user?.id ?? "",
       page: 0,
@@ -36,12 +45,29 @@ const PersonalPage: NextPage = () => {
 
   return (
     <>
-      <div className={styles.maxWidthContainer}>
+      <div className={styles.centeredContainer}>
         <UserInfo {...data} />
-        <Modal onClose={() => {}} isOpen={true}>
-          <UserDataForm />
+        <Modal
+          onClose={() => {
+            setModalOpen(false);
+          }}
+          isOpen={modalOpen}
+        >
+          <UserDataForm
+            onSubmit={({ displayName }) => {
+              setModalOpen(false);
+              updateProfileMutation.mutate({ displayName });
+            }}
+          />
         </Modal>
-        <button>Edit your data</button>
+        <button
+          className={styles.primaryButton}
+          onClick={() => {
+            setModalOpen(true);
+          }}
+        >
+          Edit your data
+        </button>
         <PostSection title="Your posts" posts={data.posts} />
       </div>
     </>

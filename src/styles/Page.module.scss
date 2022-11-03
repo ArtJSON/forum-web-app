@@ -1,7 +1,27 @@
+@import "variables";
+
 .maxWidthContainer {
   padding: 1rem;
   width: 100%;
   max-width: 1600px;
+  margin: 0 auto;
+}
+
+.centeredContainer {
+  padding: 1rem;
+  min-height: calc(100vh - $footer-height-mobile);
+  @media screen and (min-width: $breakpoint-tablet) {
+    min-height: calc(100vh - $footer-height-desktop);
+  }
+
+  width: 100%;
+  max-width: 1600px;
+
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
 }
 
@@ -14,4 +34,21 @@
   cursor: pointer;
   outline: inherit;
   padding: 0.5rem;
+}
+
+.primaryButton {
+  background: $color-primary;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: fit-content;
+
+  &:hover {
+    background-color: darken($color-primary, 10);
+  }
 }
