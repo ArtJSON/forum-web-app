@@ -1,7 +1,7 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
-import { t } from "../trpc";
+import { authedProcedure, t } from "../trpc";
 
 export const profileRouter = t.router({
   getProfileById: t.procedure
@@ -46,5 +46,28 @@ export const profileRouter = t.router({
           responses: post.comments.length,
         })),
       };
+    }),
+  updateProfileData: t.procedure
+    .input(
+      z.object({
+        displayName: z.string().max(50),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      if (!ctx.session?.user) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Log in to perform this action.",
+        });
+      }
+
+      await ctx.prisma.user.update({
+        where: {
+          id: ctx.session.user.id,
+        },
+        data: {
+          displayName: input.displayName,
+        },
+      });
     }),
 });
