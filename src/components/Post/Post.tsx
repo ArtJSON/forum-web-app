@@ -1,22 +1,12 @@
 import { PostType } from "../../types/ListingTypes";
 import { Tag } from "../Tag/Tag";
-
 import styles from "./Post.module.scss";
 
-export const Post = ({
-  id,
-  name,
-  tags,
-  createdAt,
-  views,
-  userId,
-  content,
-  displayName,
-}: PostType) => {
+export const Post = ({ name, tags, createdAt, content, user }: PostType) => {
   return (
     <div className={styles.post}>
       <div className={styles.userInfo}>
-        <span>{displayName}</span>
+        <span>{user.displayName}</span>
         <span> on </span>
         <span>{createdAt.toDateString()}:</span>
       </div>

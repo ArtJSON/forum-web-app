@@ -17,7 +17,7 @@ export type PostListingResponseType = inferProcedureOutput<
 
 export type PostSectionType = PostListingResponseType["posts"];
 
-export type PostType = Post & { displayName?: string };
+export type PostType = inferProcedureOutput<AppRouter["post"]["getPostById"]>;
 
 export type PostCommentsType = inferProcedureOutput<
   AppRouter["post"]["getPostById"]
