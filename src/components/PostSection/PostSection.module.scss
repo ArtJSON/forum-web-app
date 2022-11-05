@@ -1,13 +1,13 @@
 @import "src/styles/variables";
 .postSection {
-  border: $border-thin;
-  border-radius: 0.5rem 0.5rem 0 0;
   overflow: hidden;
   width: 100%;
 
   .header {
     padding: 1.5rem 0.5rem;
     background-color: $color-header;
+    border: $border-thin;
+    border-radius: 0.5rem 0.5rem 0 0;
   }
 
   .post {
@@ -17,10 +17,14 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    border-top: $border-thin;
+    border: $border-thin;
     background-color: rgb(36, 36, 36);
     color: $color-text-gray;
     cursor: pointer;
+
+    &:last-of-type {
+      border-radius: 0 0 0.5rem 0.5rem;
+    }
 
     .imageContainer {
       min-width: 3rem;

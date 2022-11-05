@@ -46,6 +46,14 @@ const PersonalPage: NextPage = () => {
   return (
     <>
       <div className={styles.centeredContainer}>
+        <button
+          className={styles.primaryButton}
+          onClick={() => {
+            setModalOpen(true);
+          }}
+        >
+          Edit your data
+        </button>
         <UserInfo {...data} />
         <Modal
           onClose={() => {
@@ -60,14 +68,6 @@ const PersonalPage: NextPage = () => {
             }}
           />
         </Modal>
-        <button
-          className={styles.primaryButton}
-          onClick={() => {
-            setModalOpen(true);
-          }}
-        >
-          Edit your data
-        </button>
         <PostSection title="Your posts" posts={data.posts} />
       </div>
     </>

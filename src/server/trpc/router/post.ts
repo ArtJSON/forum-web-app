@@ -134,4 +134,25 @@ export const postRouter = t.router({
 
       return postInDb;
     }),
+  deletePostById: authedProcedure
+    .input(
+      z.object({
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const postInDb = await ctx.prisma.post.findFirstOrThrow({
+        where: {
+          id: input.postId,
+        },
+      });
+
+      if (ctx.session.user.id === postInDb.userId) {
+        await ctx.prisma.post.delete({
+          where: {
+            id: input.postId,
+          },
+        });
+      }
+    }),
 });

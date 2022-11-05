@@ -1,5 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 
 import { Location } from "../../components/Location/Location";
@@ -14,6 +16,8 @@ interface PostPageProps {
 }
 
 const PostPage: NextPage<PostPageProps> = ({ postId }) => {
+  const router = useRouter();
+  const { data: session } = useSession();
   const { data } = trpc.post.getPostById.useQuery(
     {
       id: postId,
@@ -23,6 +27,13 @@ const PostPage: NextPage<PostPageProps> = ({ postId }) => {
       refetchOnWindowFocus: false,
     }
   );
+
+  const deletePostMutation = trpc.post.deletePostById.useMutation({
+    onSuccess: () => {
+      router.push("/");
+    },
+    onError: (error) => toast.error(`Something went wrong: ${error.message}`),
+  });
 
   if (!data) {
     return <></>;
@@ -36,6 +47,7 @@ const PostPage: NextPage<PostPageProps> = ({ postId }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SearchBanner />
+
       <Location
         paths={[
           { label: data?.category.name, url: `/category/${data?.categoryId}` },
@@ -43,6 +55,15 @@ const PostPage: NextPage<PostPageProps> = ({ postId }) => {
         ]}
       />
       <div className={styles.maxWidthContainer}>
+        {session?.user?.id === data.userId && (
+          <button
+            onClick={() => {
+              deletePostMutation.mutate({ postId: data.id });
+            }}
+          >
+            Delete this post
+          </button>
+        )}
         <Post {...data} />
       </div>
     </>
